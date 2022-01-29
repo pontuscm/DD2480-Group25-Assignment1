@@ -21,7 +21,9 @@ public class InputParameters {
     private double radius2;
     private double area2;
 
-    public InputParameters(double length1, double radius1, double epsilon, double area1, int q_pts, int quads, double dist, int n_pts, int k_pts, int a_pts, int b_pts, int c_pts, int d_pts, int e_pts, int f_pts, int g_pts, double length2, double radius2, double area2) {
+    public InputParameters(double length1, double radius1, double epsilon, double area1, int q_pts, int quads,
+                           double dist, int n_pts, int k_pts, int a_pts, int b_pts, int c_pts, int d_pts, int e_pts,
+                           int f_pts, int g_pts, double length2, double radius2, double area2) {
         this.length1 = length1;
         this.radius1 = radius1;
         this.epsilon = epsilon;
