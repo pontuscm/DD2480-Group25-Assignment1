@@ -43,6 +43,9 @@ public class InputParameters {
         this.area2 = area2;
     }
 
+    public InputParameters() {
+    }
+
     public double getLength1() {
         return length1;
     }
@@ -194,4 +197,5 @@ public class InputParameters {
     public void setArea2(double area2) {
         this.area2 = area2;
     }
+
 }
