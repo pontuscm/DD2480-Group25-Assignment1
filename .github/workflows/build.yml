@@ -10,6 +10,6 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          java-version: '13'
+          java-version: '17'
           distribution: 'temurin'
       - run: mvn -B package
