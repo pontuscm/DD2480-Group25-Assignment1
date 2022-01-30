@@ -28,8 +28,9 @@ public class LaunchinterceptorCondition1Test {
 
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
-            arguments(List.of(Coordinate.of(10,10), Coordinate.of(15, 15), Coordinate.of(20, 20)), 7.0),
-            arguments(List.of(Coordinate.of(0, 0),Coordinate.of(0, 1),Coordinate.of(1, 1)),0.7)
+            arguments(List.of(Coordinate.of(10, 10), Coordinate.of(15, 15), Coordinate.of(20, 20)), 7.0),
+            arguments(List.of(Coordinate.of(0, 0),Coordinate.of(0, 1),Coordinate.of(1, 1)),0.7),
+            arguments(List.of(Coordinate.of(0, 0),Coordinate.of(0, Math.sqrt(3.0)),Coordinate.of(1, 0),Coordinate.of(-1, 0)),1.1547) 
         );
     }
 
@@ -58,6 +59,13 @@ public class LaunchinterceptorCondition1Test {
     void shouldRejectIfTooSmallRadius() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),Coordinate.of(0, 1),Coordinate.of(1, 1)); 
         parameters.setRadius1(0.72);
+        assertFalse(condition.evaluate(coordinates, parameters));
+    }
+
+    @Test
+    void shouldRejectIfNotConsecutive() {
+        List<Coordinate> coordinates = List.of(Coordinate.of(0, Math.sqrt(3.0)),Coordinate.of(0, 0),Coordinate.of(1, 0),Coordinate.of(-1, 0)); 
+        parameters.setRadius1(1.1547);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
