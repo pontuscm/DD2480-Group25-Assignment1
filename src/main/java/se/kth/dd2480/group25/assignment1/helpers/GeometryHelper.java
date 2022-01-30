@@ -74,10 +74,10 @@ public final class GeometryHelper {
       * @return the radius of  the circumcircle of three points
       */
 
-      public static double circumcircleRadisu(Coordinate a, Coordinate b, Coordinate c){
-          double a = distanceBetween(a, b);
-          double b = distanceBetween(a, c);
-          double c = distanceBetween(c, b);
+      public static double circumcircleRadisu(Coordinate x, Coordinate y, Coordinate z){
+          double a = distanceBetween(x, y);
+          double b = distanceBetween(x, z);
+          double c = distanceBetween(y, z);
 
           double radius = ( a * b * c ) / Math.sqrt(( a + b + c ) * ( a + b - c ) * ( a - b + c ) * ( -a + b + c ));
           return radius;
