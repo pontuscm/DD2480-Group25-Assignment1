@@ -52,5 +52,35 @@ public final class GeometryHelper {
         double yDis = a.getY() - b.getY();
         return Math.sqrt((xDis * xDis) + (yDis * yDis));
     }
+
+    /**
+     * Calculate the length of a line formed by 3 collinear points
+     * 
+     * @return the distance of the line formed by 3 collinear points
+     */
+
+     public static double lineLength(Coordinate a, Coordinate b, Coordinate c){
+         double distanceAB = distanceBetween(a, b);
+         double distanceAC = distanceBetween(a, c);
+         double distanceCB = distanceBetween(c, b);
+
+         double linelength = Math.max(Math.max(distanceAB, distanceAC),distanceCB);
+         return linelength;
+     }
+
+     /**
+      * Calculate the radius of the circumcircle of three points
+      * 
+      * @return the radius of  the circumcircle of three points
+      */
+
+      public static double circumcircleRadisu(Coordinate a, Coordinate b, Coordinate c){
+          double a = distanceBetween(a, b);
+          double b = distanceBetween(a, c);
+          double c = distanceBetween(c, b);
+
+          double radius = ( a * b * c ) / Math.sqrt(( a + b + c ) * ( a + b - c ) * ( a - b + c ) * ( -a + b + c ));
+          return radius;
+      }
     
 }
