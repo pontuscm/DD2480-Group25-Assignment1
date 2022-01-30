@@ -74,7 +74,7 @@ public final class GeometryHelper {
       * @return the radius of  the circumcircle of three points
       */
 
-      public static double circumcircleRadisu(Coordinate x, Coordinate y, Coordinate z){
+      public static double circumcircleRadius(Coordinate x, Coordinate y, Coordinate z){
           double a = distanceBetween(x, y);
           double b = distanceBetween(x, z);
           double c = distanceBetween(y, z);
