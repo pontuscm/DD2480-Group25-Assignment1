@@ -19,6 +19,13 @@ public class LaunchInterceptorCondition3Test {
     private InputParameters parameters = new InputParameters();
     private LaunchInterceptorCondition3 condition = new LaunchInterceptorCondition3();
 
+    @ParameterizedTest
+    @MethodSource("validInputProvider")
+    void shouldAcceptForValidInput(List<Coordinate> coordinates, double minArea) {
+        parameters.setArea1(minArea);
+        assertTrue(condition.evaluate(coordinates, parameters));
+    }
+
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
             arguments(List.of(Coordinate.of(14, 23), Coordinate.of(7, 12), Coordinate.of(30, 6)), 140.0),
@@ -27,13 +34,6 @@ public class LaunchInterceptorCondition3Test {
             arguments(List.of(Coordinate.of(20, 15), Coordinate.of(15, 6), Coordinate.of(10, 5), Coordinate.of(5, 5)),
                       15.0)
         );
-    }
-
-    @ParameterizedTest
-    @MethodSource("validInputProvider")
-    void shouldAcceptForValidInput(List<Coordinate> coordinates, double minArea) {
-        parameters.setArea1(minArea);
-        assertTrue(condition.evaluate(coordinates, parameters));
     }
 
     @Test
