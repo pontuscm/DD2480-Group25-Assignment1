@@ -1,10 +1,9 @@
 package se.kth.dd2480.group25.assignment1.lic;
 
-import com.google.common.math.DoubleMath;
 import se.kth.dd2480.group25.assignment1.Coordinate;
 import se.kth.dd2480.group25.assignment1.InputParameters;
-import se.kth.dd2480.group25.assignment1.helpers.Constants;
-import se.kth.dd2480.group25.assignment1.helpers.GeometryHelper;
+import se.kth.dd2480.group25.assignment1.helpers.EvaluationHelper;
+import se.kth.dd2480.group25.assignment1.helpers.TriPredicate;
 
 import java.util.List;
 
@@ -20,22 +19,14 @@ import java.util.List;
 public class LaunchInterceptorCondition10 implements LaunchInterceptorCondition {
     @Override
     public boolean evaluate(List<Coordinate> coordinates, InputParameters inputParameters) {
-        int firstOffset = inputParameters.getE_pts();
-        int secondOffset = inputParameters.getF_pts();
-        for (int firstIndex = 0; firstIndex + firstOffset + secondOffset + 2 < coordinates.size(); ++firstIndex) {
-            int middleIndex = firstIndex + firstOffset + 1;
-            int lastIndex = middleIndex + secondOffset + 1;
 
-            double triangleArea = GeometryHelper.getTriangleArea(coordinates.get(firstIndex),
-                                                                 coordinates.get(middleIndex),
-                                                                 coordinates.get(lastIndex));
+        TriPredicate triangleGreaterThanArea1Test = EvaluationHelper.triangleAreaGreaterThanTest(
+            inputParameters.getArea1());
 
-            // If triangle area is greater than the minimum allowed area (watch out for floating point precision!)
-            if (DoubleMath.fuzzyCompare(triangleArea, inputParameters.getArea1(), Constants.FLOAT_TOLERANCE) > 0) {
-                return true;
-            }
-        }
-        return false;
+        return EvaluationHelper.triEvaluateWithOffsets(coordinates,
+                                                       inputParameters.getE_pts(),
+                                                       inputParameters.getF_pts(),
+                                                       triangleGreaterThanArea1Test);
     }
 
 }
