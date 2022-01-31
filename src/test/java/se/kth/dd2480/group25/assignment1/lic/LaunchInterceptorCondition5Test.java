@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
+import static se.kth.dd2480.group25.assignment1.test_utils.CoordinateTestUtils.*;
 
 public class LaunchInterceptorCondition5Test {
 
