@@ -19,7 +19,7 @@ public class LaunchInterceptorCondition5 implements LaunchInterceptorCondition {
             int secondIndex = firstIndex + 1;
 
             // Checks that X[j] - X[i] < 0 for consecutive indeces (where i = j-1)
-            if (coordinates.get(secondIndex) - coordinates.get(firstIndex) < 0) {
+            if (coordinates.get(secondIndex).getX() - coordinates.get(firstIndex).getX() < 0) {
                 return true;
             }
         }
