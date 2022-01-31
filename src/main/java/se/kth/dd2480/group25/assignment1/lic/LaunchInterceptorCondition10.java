@@ -17,6 +17,15 @@ import java.util.List;
  * and points y and z must be separated by exactly {@link InputParameters#getF_pts()} intermediary points.
  */
 public class LaunchInterceptorCondition10 implements LaunchInterceptorCondition {
+
+    /**
+     * @param coordinates     List of x, y coordinates of the planar data points
+     * @param inputParameters The input parameters to the decision system, containing the minimum required triangle
+     *                        area and the counts of intermediary points
+     * @return {@code true} if there exist points on the plane separated by the offsets {@link InputParameters#getE_pts()}
+     * and {@link InputParameters#getF_pts()} which together form a triangle with area greater than the
+     * value of {@link InputParameters#getArea1()}, otherwise {@code false}
+     */
     @Override
     public boolean evaluate(List<Coordinate> coordinates, InputParameters inputParameters) {
 
