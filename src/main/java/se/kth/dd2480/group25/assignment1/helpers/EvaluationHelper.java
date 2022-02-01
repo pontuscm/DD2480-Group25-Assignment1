@@ -69,7 +69,7 @@ public class EvaluationHelper {
             double triangleArea = GeometryHelper.getTriangleArea(first, middle, last);
 
             // Check if triangle area is lesser than the maximum allowed area (watch out for floating point precision!)
-            return DoubleMath.fuzzyCompare(triangleArea, maxArea, Constants.FLOAT_TOLERANCE) < 0;
+            return triangleArea > 0 && DoubleMath.fuzzyCompare(triangleArea, maxArea, Constants.FLOAT_TOLERANCE) < 0;
         };
     }
 
