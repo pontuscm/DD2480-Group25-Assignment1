@@ -61,8 +61,8 @@ public class LaunchinterceptorCondition13Test {
     @Test
     void shouldRejectIfTooSmallRadius() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),Coordinate.of(1, 0),Coordinate.of(0, 1),Coordinate.of(1, 2),Coordinate.of(1, 1)); 
-        parameters.setRadius1(0.72);
-        parameters.setRadius2(0.72);
+        parameters.setRadius1(3);
+        parameters.setRadius2(3);
 
         parameters.setA_pts(1);
         parameters.setB_pts(1);
