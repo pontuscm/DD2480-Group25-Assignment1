@@ -74,10 +74,10 @@ public final class GeometryHelper {
      * @return the distance of the line formed by 3 collinear points
      */
 
-     public static double lineLength(Coordinate a, Coordinate b, Coordinate c){
-         double distanceAB = distanceBetween(a, b);
-         double distanceAC = distanceBetween(a, c);
-         double distanceCB = distanceBetween(c, b);
+     public static double maxLineLength(Coordinate a, Coordinate b, Coordinate c){
+         double distanceAB = distance(a, b);
+         double distanceAC = distance(a, c);
+         double distanceCB = distance(c, b);
 
          double linelength = Math.max(Math.max(distanceAB, distanceAC),distanceCB);
          return linelength;
@@ -90,9 +90,9 @@ public final class GeometryHelper {
       */
 
       public static double circumcircleRadius(Coordinate x, Coordinate y, Coordinate z){
-          double a = distanceBetween(x, y);
-          double b = distanceBetween(x, z);
-          double c = distanceBetween(y, z);
+          double a = distance(x, y);
+          double b = distance(x, z);
+          double c = distance(y, z);
 
           double radius = ( a * b * c ) / Math.sqrt(( a + b + c ) * ( a + b - c ) * ( a - b + c ) * ( -a + b + c ));
           return radius;
