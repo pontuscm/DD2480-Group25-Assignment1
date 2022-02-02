@@ -31,9 +31,18 @@ public class LaunchInterceptorCondition6 implements LaunchInterceptorCondition {
         // Coordinates a and b make up a line. Its distance to c is compared to DIST. 
         for (int aIndex = 0; aIndex < coordinates.size() - n_pts + 1; aIndex++) {
             int bIndex = aIndex + n_pts - 1;
-            for (int cIndex = aIndex + 1; cIndex < bIndex; cIndex++) {
-                if (GeometryHelper.distanceBetween(coordinates.get(aIndex), coordinates.get(cIndex)) > dist && GeometryHelper.distanceBetween(coordinates.get(bIndex), coordinates.get(cIndex)) > dist) {
-                    return true;
+            
+            if (coordinates.get(aIndex).getX() == coordinates.get(bIndex).getX() && coordinates.get(aIndex).getY() == coordinates.get(bIndex).getY()) {
+                for (int cIndex = aIndex + 1; cIndex < bIndex; cIndex++) {
+                    if (GeometryHelper.distanceBetween(coordinates.get(aIndex), coordinates.get(cIndex)) > dist) {
+                        return true;
+                    }
+                }
+            } else {
+                for (int cIndex = aIndex + 1; cIndex < bIndex; cIndex++) {
+                    if (GeometryHelper.distanceBetween(coordinates.get(aIndex), coordinates.get(cIndex)) > dist && GeometryHelper.distanceBetween(coordinates.get(bIndex), coordinates.get(cIndex)) > dist) {
+                        return true;
+                    }
                 }
             }
         }
