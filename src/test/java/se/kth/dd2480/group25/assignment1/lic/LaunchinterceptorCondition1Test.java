@@ -36,7 +36,9 @@ public class LaunchinterceptorCondition1Test {
 
     @Test
     void collinearFalse() {
-        List<Coordinate> coordinates = List.of(Coordinate.of(10, 10), Coordinate.of(15, 15), Coordinate.of(20, 20)); // half of the length of greatest line is 14.14/2 =7.07
+        List<Coordinate> coordinates = List.of(Coordinate.of(10, 10), 
+                                               Coordinate.of(15, 15), 
+                                               Coordinate.of(20, 20)); // half of the length of greatest line is 14.14/2 =7.07
         parameters.setRadius1(7.2);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
@@ -59,13 +61,6 @@ public class LaunchinterceptorCondition1Test {
     void shouldRejectIfTooSmallRadius() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),Coordinate.of(0, 1),Coordinate.of(1, 1)); 
         parameters.setRadius1(0.72);
-        assertFalse(condition.evaluate(coordinates, parameters));
-    }
-
-    @Test
-    void shouldRejectIfNotConsecutive() {
-        List<Coordinate> coordinates = List.of(Coordinate.of(0, Math.sqrt(3.0)),Coordinate.of(0, 0),Coordinate.of(1, 0),Coordinate.of(-1, 0)); 
-        parameters.setRadius1(1.1547);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
