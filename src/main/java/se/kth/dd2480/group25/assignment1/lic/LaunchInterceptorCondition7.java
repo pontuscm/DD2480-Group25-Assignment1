@@ -25,7 +25,7 @@ public class LaunchInterceptorCondition7 implements LaunchInterceptorCondition {
      */
     @Override
     public boolean evaluate(List<Coordinate> coordinates, InputParameters inputParameters) {
-        if (inputParameters.getN_pts() < 3) {
+        if (inputParameters.getN_pts() < 3 || inputParameters.getK_pts() < 0 || inputParameters.getK_pts() > inputParameters.getN_pts() - 2) {
             return false;
         }
 
