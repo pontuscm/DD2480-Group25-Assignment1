@@ -36,7 +36,7 @@ public class LaunchInterceptorCondition1 implements LaunchInterceptorCondition{
             Coordinate c = coordinates.get(i+2);
 
             if (GeometryHelper.isCollinear(a,b,c)){
-                double diameter = GeometryHelper.lineLength(a,b,c);
+                double diameter = GeometryHelper.maxLineLength(a,b,c);
                 if (diameter / 2 > inputParameters.getRadius1()){
                     return true;
                 }
