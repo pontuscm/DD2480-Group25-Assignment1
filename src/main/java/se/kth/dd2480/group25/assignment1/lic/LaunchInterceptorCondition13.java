@@ -3,7 +3,6 @@ package se.kth.dd2480.group25.assignment1.lic;
 import se.kth.dd2480.group25.assignment1.Coordinate;
 import se.kth.dd2480.group25.assignment1.InputParameters;
 import se.kth.dd2480.group25.assignment1.helpers.GeometryHelper;
-import se.kth.dd2480.group25.assignment1.lic.LaunchInterceptorCondition8;
 
 import java.util.List;
 
