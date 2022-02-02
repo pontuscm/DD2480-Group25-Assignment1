@@ -34,13 +34,13 @@ public class LaunchInterceptorCondition6 implements LaunchInterceptorCondition {
             
             if (coordinates.get(aIndex).getX() == coordinates.get(bIndex).getX() && coordinates.get(aIndex).getY() == coordinates.get(bIndex).getY()) {
                 for (int cIndex = aIndex + 1; cIndex < bIndex; cIndex++) {
-                    if (GeometryHelper.distanceBetween(coordinates.get(aIndex), coordinates.get(cIndex)) > dist) {
+                    if (GeometryHelper.distance(coordinates.get(aIndex), coordinates.get(cIndex)) > dist) {
                         return true;
                     }
                 }
             } else {
                 for (int cIndex = aIndex + 1; cIndex < bIndex; cIndex++) {
-                    if (GeometryHelper.distanceBetween(coordinates.get(aIndex), coordinates.get(cIndex)) > dist && GeometryHelper.distanceBetween(coordinates.get(bIndex), coordinates.get(cIndex)) > dist) {
+                    if (GeometryHelper.distance(coordinates.get(aIndex), coordinates.get(cIndex)) > dist && GeometryHelper.distance(coordinates.get(bIndex), coordinates.get(cIndex)) > dist) {
                         return true;
                     }
                 }
