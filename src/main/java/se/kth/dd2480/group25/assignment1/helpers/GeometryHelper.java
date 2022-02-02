@@ -68,20 +68,20 @@ public final class GeometryHelper {
          return linelength;
      }
 
-     /**
-      * Calculate the radius of the circumcircle of three points
-      * 
-      * @return the radius of  the circumcircle of three points
-      */
+    /**
+     * Calculate the radius of the circumcircle of three points
+     * 
+     * @return the radius of the circumcircle of three points
+     */
 
-      public static double circumcircleRadius(Coordinate x, Coordinate y, Coordinate z){
-          double a = distanceBetween(x, y);
-          double b = distanceBetween(x, z);
-          double c = distanceBetween(y, z);
+    public static double circumcircleRadius(Coordinate x, Coordinate y, Coordinate z){
+        double a = distanceBetween(x, y);
+        double b = distanceBetween(x, z);
+        double c = distanceBetween(y, z);
 
-          double radius = ( a * b * c ) / Math.sqrt(( a + b + c ) * ( a + b - c ) * ( a - b + c ) * ( -a + b + c ));
-          return radius;
-      }
+        double radius = ( a * b * c ) / Math.sqrt(( a + b + c ) * ( a + b - c ) * ( a - b + c ) * ( -a + b + c ));
+        return radius;
+    }
     
     /**
      * Calculates the distance between two coordinates on a two-dimensional plane
@@ -94,4 +94,23 @@ public final class GeometryHelper {
         return Math.sqrt(xDiffSquared + yDiffSquared);
     }
 
+    /**
+     * Calculates the distance between a point and a line in a two-dimensional plane.
+     *
+     * @param a Coordinate that makes up a line together with b
+     * @param b Coordinate that makes up a line together with a
+     * @param c Coordinate of the point which distance is calculated from the a-b line
+     * @return The distance between point c and the line made up of a and b.
+     */
+    public static double distanceBetweenLineAndPoint(Coordinate a, Coordinate b, Coordinate c) {
+        double x_1 = a.getX();
+        double y_1 = a.getY();
+        double x_2 = b.getX();
+        double y_2 = b.getY();
+        double x_3 = b.getX();
+        double y_3 = b.getY();
+        double num = Math.abs((x_2 - x_1) * (y_1 - y_3) - (x_1 - x_3)* (y_2 - y_1));
+        double denom = Math.sqrt(Math.pow((x_2 - x_1), 2) + Math.pow((y_2 - y_1), 2));
+        return num / denom;
+    }
 }
