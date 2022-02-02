@@ -67,7 +67,7 @@ public final class GeometryHelper {
         double sideC = distanceBetween(first, last);
         return Math.acos((Math.pow(sideA,2) + Math.pow(sideB,2) - Math.pow(sideC,2))/(2*sideA*sideB));
     }
-    
+
     /**
      * Calculate the length of a line formed by 3 collinear points
      * 
