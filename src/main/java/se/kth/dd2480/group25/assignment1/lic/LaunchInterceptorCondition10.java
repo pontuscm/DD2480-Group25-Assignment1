@@ -1,10 +1,9 @@
 package se.kth.dd2480.group25.assignment1.lic;
 
-import com.google.common.math.DoubleMath;
 import se.kth.dd2480.group25.assignment1.Coordinate;
 import se.kth.dd2480.group25.assignment1.InputParameters;
-import se.kth.dd2480.group25.assignment1.helpers.Constants;
-import se.kth.dd2480.group25.assignment1.helpers.GeometryHelper;
+import se.kth.dd2480.group25.assignment1.helpers.EvaluationHelper;
+import se.kth.dd2480.group25.assignment1.helpers.TriPredicate;
 
 import java.util.List;
 
@@ -18,24 +17,25 @@ import java.util.List;
  * and points y and z must be separated by exactly {@link InputParameters#getF_pts()} intermediary points.
  */
 public class LaunchInterceptorCondition10 implements LaunchInterceptorCondition {
+
+    /**
+     * @param coordinates     List of x, y coordinates of the planar data points
+     * @param inputParameters The input parameters to the decision system, containing the minimum required triangle
+     *                        area and the counts of intermediary points
+     * @return {@code true} if there exist points on the plane separated by the offsets {@link InputParameters#getE_pts()}
+     * and {@link InputParameters#getF_pts()} which together form a triangle with area greater than the
+     * value of {@link InputParameters#getArea1()}, otherwise {@code false}
+     */
     @Override
     public boolean evaluate(List<Coordinate> coordinates, InputParameters inputParameters) {
-        int firstOffset = inputParameters.getE_pts();
-        int secondOffset = inputParameters.getF_pts();
-        for (int firstIndex = 0; firstIndex + firstOffset + secondOffset + 2 < coordinates.size(); ++firstIndex) {
-            int middleIndex = firstIndex + firstOffset + 1;
-            int lastIndex = middleIndex + secondOffset + 1;
 
-            double triangleArea = GeometryHelper.getTriangleArea(coordinates.get(firstIndex),
-                                                                 coordinates.get(middleIndex),
-                                                                 coordinates.get(lastIndex));
+        TriPredicate triangleGreaterThanArea1Test = EvaluationHelper.triangleAreaGreaterThanTest(
+            inputParameters.getArea1());
 
-            // If triangle area is greater than the minimum allowed area (watch out for floating point precision!)
-            if (DoubleMath.fuzzyCompare(triangleArea, inputParameters.getArea1(), Constants.FLOAT_TOLERANCE) > 0) {
-                return true;
-            }
-        }
-        return false;
+        return EvaluationHelper.triEvaluateWithOffsets(coordinates,
+                                                       inputParameters.getE_pts(),
+                                                       inputParameters.getF_pts(),
+                                                       triangleGreaterThanArea1Test);
     }
 
 }

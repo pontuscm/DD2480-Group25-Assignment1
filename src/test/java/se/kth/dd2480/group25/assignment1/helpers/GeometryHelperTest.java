@@ -28,4 +28,23 @@ class GeometryHelperTest {
         double epsilon = 0.000001d; // needed for comparing floating point numbers
         assertEquals(expectedArea, calculatedArea, epsilon);
     }
+
+
+    static Stream<Arguments> circumcircleRadiusTestProvider() {
+        return Stream.of(
+            arguments(Coordinate.of(0, 0), Coordinate.of(0, 1), Coordinate.of(1, 1), Math.sqrt(2.0)/2.0),
+            arguments(Coordinate.of(0, 0), Coordinate.of(0, 1), Coordinate.of(0.5, 1), 0.559017d)
+
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("circumcircleRadiusTestProvider")
+    void testCircumcircleRadius(Coordinate first, Coordinate second, Coordinate third, double expectedRadius) {
+        double calculatedRadius = GeometryHelper.circumcircleRadius(first, second, third);
+        double epsilon = 0.000001d; // needed for comparing floating point numbers
+        assertEquals(expectedRadius, calculatedRadius, epsilon);
+    }
+
+    
 }
