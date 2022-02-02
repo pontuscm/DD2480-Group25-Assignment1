@@ -9,7 +9,17 @@ This input is measured against a set of Launch Interceptor Conditions (LICs). Th
 Not all LICs are taken into account at every run instance of the DECIDE function - the values of the Preliminary Unlocking Vector (PUV) represent which LICs actually matter in every run.
 
 ## Building & Testing
-TODO
+Prerequisites: [Java JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) and [Maven](https://maven.apache.org/)
+
+Compiling the source code:
+```
+mvn compile
+```
+
+Running tests:
+```
+mvn test
+```
 
 ## Project structure
 Source files:
@@ -28,3 +38,5 @@ Emilia:
 Xinyi:
 
 Patryk:
+
+Extra feature: We've adopted continuous integration with automated builds after each code push. Each automated build runs all tests and reports the outcome on any relevant pull request, giving us more confidence when merging code onto main. We've used GitHub actions together with maven to set this up. 
