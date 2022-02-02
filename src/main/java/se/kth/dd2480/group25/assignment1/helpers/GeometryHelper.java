@@ -28,6 +28,12 @@ public final class GeometryHelper {
         return Math.sqrt((xDis * xDis) + (yDis * yDis));
     }
 
+    /**
+     * Calculates the angle formed by three points on a two-dimensional plane, where the second point is the
+     * vertex of the angle.
+     *
+     * @return The angle in radians
+     */
     public static double getAngle(Coordinate first, Coordinate vertex, Coordinate last) {
         double sideA = distanceBetween(first, vertex);
         double sideB = distanceBetween(vertex, last);
