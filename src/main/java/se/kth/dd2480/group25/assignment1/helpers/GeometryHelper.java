@@ -21,4 +21,16 @@ public final class GeometryHelper {
                             second.getX() * (third.getY() - first.getY()) +
                             third.getX() * (first.getY() - second.getY())) / 2;
     }
+
+    /**
+     * Calculates the distance between two coordinates on a two-dimensional plane
+     *
+     * @return The total area of the triangle
+     */
+    public static double distance(Coordinate a, Coordinate b) {
+        double xDiffSquared = Math.pow(a.getX() - b.getX(), 2);
+        double yDiffSquared = Math.pow(a.getY() - b.getY(), 2);
+        return Math.sqrt(xDiffSquared + yDiffSquared);
+    }
+
 }
