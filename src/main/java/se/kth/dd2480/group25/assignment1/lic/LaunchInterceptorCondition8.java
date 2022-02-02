@@ -2,7 +2,6 @@ package se.kth.dd2480.group25.assignment1.lic;
 
 import se.kth.dd2480.group25.assignment1.Coordinate;
 import se.kth.dd2480.group25.assignment1.InputParameters;
-import se.kth.dd2480.group25.assignment1.helpers.Constants;
 import se.kth.dd2480.group25.assignment1.helpers.GeometryHelper;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class LaunchInterceptorCondition8 implements LaunchInterceptorCondition{
             Coordinate c = coordinates.get(i + 2 + inputParameters.getB_pts());
 
             if (GeometryHelper.isCollinear(a,b,c)){
-                double diameter = GeometryHelper.lineLength(a,b,c);
+                double diameter = GeometryHelper.maxLineLength(a,b,c);
                 if (diameter / 2 > inputParameters.getRadius1()){
                     return true;
                 }

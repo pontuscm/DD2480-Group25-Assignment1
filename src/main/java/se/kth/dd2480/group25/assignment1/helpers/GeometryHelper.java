@@ -42,18 +42,7 @@ public final class GeometryHelper {
         return false;
      }
 
-    /**
-     * Calculate the distance between point a and b
-     * 
-     * @return the distance between point a and b
-     */
 
-
-    public static double distanceBetween(Coordinate a, Coordinate b){
-        double xDis = a.getX() - b.getX();
-        double yDis = a.getY() - b.getY();
-        return Math.sqrt((xDis * xDis) + (yDis * yDis));
-    }
 
     /**
      * Calculates the angle formed by three points on a two-dimensional plane, where the second point is the
@@ -62,9 +51,9 @@ public final class GeometryHelper {
      * @return The angle in radians
      */
     public static double getAngle(Coordinate first, Coordinate vertex, Coordinate last) {
-        double sideA = distanceBetween(first, vertex);
-        double sideB = distanceBetween(vertex, last);
-        double sideC = distanceBetween(first, last);
+        double sideA = distance(first, vertex);
+        double sideB = distance(vertex, last);
+        double sideC = distance(first, last);
         return Math.acos((Math.pow(sideA,2) + Math.pow(sideB,2) - Math.pow(sideC,2))/(2*sideA*sideB));
     }
 
@@ -74,10 +63,10 @@ public final class GeometryHelper {
      * @return the distance of the line formed by 3 collinear points
      */
 
-     public static double lineLength(Coordinate a, Coordinate b, Coordinate c){
-         double distanceAB = distanceBetween(a, b);
-         double distanceAC = distanceBetween(a, c);
-         double distanceCB = distanceBetween(c, b);
+     public static double maxLineLength(Coordinate a, Coordinate b, Coordinate c){
+         double distanceAB = distance(a, b);
+         double distanceAC = distance(a, c);
+         double distanceCB = distance(c, b);
 
          double linelength = Math.max(Math.max(distanceAB, distanceAC),distanceCB);
          return linelength;
@@ -90,9 +79,9 @@ public final class GeometryHelper {
       */
 
       public static double circumcircleRadius(Coordinate x, Coordinate y, Coordinate z){
-          double a = distanceBetween(x, y);
-          double b = distanceBetween(x, z);
-          double c = distanceBetween(y, z);
+          double a = distance(x, y);
+          double b = distance(x, z);
+          double c = distance(y, z);
 
           double radius = ( a * b * c ) / Math.sqrt(( a + b + c ) * ( a + b - c ) * ( a - b + c ) * ( -a + b + c ));
           return radius;
