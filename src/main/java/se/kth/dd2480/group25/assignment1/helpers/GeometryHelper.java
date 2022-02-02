@@ -22,6 +22,7 @@ public final class GeometryHelper {
                             third.getX() * (first.getY() - second.getY())) / 2;
     }
 
+
      /**
      * Check if three points are collinear
      *
@@ -47,10 +48,24 @@ public final class GeometryHelper {
      * @return the distance between point a and b
      */
 
+
     public static double distanceBetween(Coordinate a, Coordinate b){
         double xDis = a.getX() - b.getX();
         double yDis = a.getY() - b.getY();
         return Math.sqrt((xDis * xDis) + (yDis * yDis));
+    }
+
+    /**
+     * Calculates the angle formed by three points on a two-dimensional plane, where the second point is the
+     * vertex of the angle.
+     *
+     * @return The angle in radians
+     */
+    public static double getAngle(Coordinate first, Coordinate vertex, Coordinate last) {
+        double sideA = distanceBetween(first, vertex);
+        double sideB = distanceBetween(vertex, last);
+        double sideC = distanceBetween(first, last);
+        return Math.acos((Math.pow(sideA,2) + Math.pow(sideB,2) - Math.pow(sideC,2))/(2*sideA*sideB));
     }
 
     /**
