@@ -1,6 +1,7 @@
 package se.kth.dd2480.group25.assignment1;
 
 import java.util.List;
+import se.kth.dd2480.group25.assignment1.UnlockingMatrix;
 
 public class LogicalConnectorMatrix {
     private OPERATION[][] matrix = new OPERATION[15][15];
