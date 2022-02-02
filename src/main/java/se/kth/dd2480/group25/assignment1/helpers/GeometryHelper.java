@@ -42,18 +42,7 @@ public final class GeometryHelper {
         return false;
      }
 
-    /**
-     * Calculate the distance between point a and b
-     * 
-     * @return the distance between point a and b
-     */
 
-
-    public static double distanceBetween(Coordinate a, Coordinate b){
-        double xDis = a.getX() - b.getX();
-        double yDis = a.getY() - b.getY();
-        return Math.sqrt((xDis * xDis) + (yDis * yDis));
-    }
 
     /**
      * Calculates the angle formed by three points on a two-dimensional plane, where the second point is the
@@ -62,9 +51,9 @@ public final class GeometryHelper {
      * @return The angle in radians
      */
     public static double getAngle(Coordinate first, Coordinate vertex, Coordinate last) {
-        double sideA = distanceBetween(first, vertex);
-        double sideB = distanceBetween(vertex, last);
-        double sideC = distanceBetween(first, last);
+        double sideA = distance(first, vertex);
+        double sideB = distance(vertex, last);
+        double sideC = distance(first, last);
         return Math.acos((Math.pow(sideA,2) + Math.pow(sideB,2) - Math.pow(sideC,2))/(2*sideA*sideB));
     }
 
