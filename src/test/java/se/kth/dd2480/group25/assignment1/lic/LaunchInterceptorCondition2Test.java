@@ -41,4 +41,11 @@ class LaunchInterceptorCondition2Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    @Test
+    void shouldRejectIfCoincideWithVertex() {
+        List<Coordinate> coordinates = List.of(Coordinate.of(55, 2), Coordinate.of(40, 10), Coordinate.of(40, 10));
+        parameters.setEpsilon(2.0);
+        assertFalse(condition.evaluate(coordinates, parameters));
+    }
+
 }
