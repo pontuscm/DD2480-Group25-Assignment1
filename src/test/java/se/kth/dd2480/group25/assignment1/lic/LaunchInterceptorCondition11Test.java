@@ -15,11 +15,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static se.kth.dd2480.group25.assignment1.test_utils.CoordinateTestUtils.*;
 
+/*
+ * Unit tests for the launch interceptor condition 11 class
+ */
 public class LaunchInterceptorCondition11Test {
 
     private InputParameters parameters = new InputParameters();
     private LaunchInterceptorCondition11 condition = new LaunchInterceptorCondition11();
 
+    /* 
+     * Test that checks three sets of valid input parameters and is expected evaluate 
+     * to true. 
+     */
     @ParameterizedTest
     @MethodSource("validInputProvider")
     void shouldAcceptForValidInput(List<Coordinate> coordinates, int g_pts) {
@@ -45,6 +52,11 @@ public class LaunchInterceptorCondition11Test {
         );
     }
 
+    /* 
+     * Test that checks if there are fewer than three coordinates which does
+     * not meed the condition. Input is two coordinates so it is expected to
+     * evaluate to false. 
+     */
     @Test
     void shouldRejectIfTooFewCoordinates() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10), 
@@ -52,6 +64,11 @@ public class LaunchInterceptorCondition11Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /* 
+     * Test that checks if G_PTS is set to fewer than one which does
+     * not meed the condition. Input is G_PTS set to zero so it is 
+     * expected to evaluate to false. 
+     */
     @Test
     void shouldRejectIfLessThanOneGpts() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10),
@@ -61,6 +78,11 @@ public class LaunchInterceptorCondition11Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /* 
+     * Test that checks if there are fewer than G_PTS plus two coordinates
+     * which does not meed the condition. Input is G_PTS set to three and 
+     * four coordinates so it is expected to evaluate to false. 
+     */
     @Test
     void shouldRejectIfLessThanGptsPlusTwoCoordinates() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10),
@@ -71,6 +93,12 @@ public class LaunchInterceptorCondition11Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /* 
+     * Test that checks when the condition X[j] - X[i] < 0 (where i < j) is 
+     * met on the last coordinates. Input is G_PTS set to one and with seven 
+     * coordinates where the X is increasing until the last one so it is 
+     * expected to evaluate to true. 
+     */
     @Test
     void shouldPassIfConditionsMetOnLastCoordinates() {
         List<Coordinate> coordinates = List.of(Coordinate.of(2, 10),
