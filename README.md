@@ -30,9 +30,13 @@ Test files:
 
 ## Contribution statement
 Henrik - Implemented LICs 0, 7, and 12, including unittests. Wrote a ReadMe.
+
 Patryk - Implemented LICs 3, 10, and 14, including unittests. Created initial project structure and added Maven (including build tool documentation in the ReadMe).
+
 Emilia - Implemented LICs 2, 4, and 9, including unittests. Created classes for the various matrices used by the program.
+
 Xinyi - Implemented LICs 1, 8, and 13, including unittests. Refractoring of helper functions.
+
 Pontus - Implemented LICs 5, 11, and 6, including unittests.
 
 Extra feature: We've adopted continuous integration with automated builds after each code push. Each automated build runs all tests and reports the outcome on any relevant pull request, giving us more confidence when merging code onto main. We've used GitHub actions together with maven to set this up. 
