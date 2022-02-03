@@ -14,6 +14,9 @@ public class LaunchDeciderIntegrationTest {
 
     private LaunchDecider launchDecider = new LaunchDecider();
 
+    /**
+     * LICs 3, 10, and 14 are met. LIC 2 is unmet but should be OR-ed with LIC 14. Should return true.
+     */
     @Test
     void mustLaunchIfMetConditions() {
 
@@ -44,6 +47,9 @@ public class LaunchDeciderIntegrationTest {
         assertTrue(result);
     }
 
+    /**
+     * Must not launch since LIC 14 is not satisfied (the smallest triangle is larger than AREA2)
+     */
     @Test
     void mustNotLaunchIfUnmetConditions() {
         List<Coordinate> coordinates =

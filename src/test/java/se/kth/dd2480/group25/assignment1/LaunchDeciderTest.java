@@ -24,6 +24,9 @@ public class LaunchDeciderTest {
 
     private LaunchDecider launchDecider = new LaunchDecider();
 
+    /**
+     * If conditions are met as determined by the Final Unlocking Vector then we should launch
+     */
     @Test
     void mustAllowLaunch() {
         when(lcm.applyConditionsMetVector(anyList())).thenReturn(pum);
@@ -33,6 +36,9 @@ public class LaunchDeciderTest {
         assertTrue(result);
     }
 
+    /**
+     * If a single conditions is not met as determined by the Final Unlocking Vector then we should not launch
+     */
     @Test
     void mustRejectLaunch() {
         when(lcm.applyConditionsMetVector(anyList())).thenReturn(pum);
