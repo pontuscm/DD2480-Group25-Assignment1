@@ -1,6 +1,6 @@
 package se.kth.dd2480.group25.assignment1;
 
-import se.kth.dd2480.group25.assignment1.lic.LaunchInterceptorCondition;
+import se.kth.dd2480.group25.assignment1.lic.*;
 
 import java.util.List;
 
@@ -30,8 +30,23 @@ public class LaunchDecider {
     }
 
     private List<LaunchInterceptorCondition> createLaunchInterceptorConditions() {
-        // TODO: Instantiate all LICs once ready
-        return List.of();
+        return List.of(
+            new LaunchInterceptorCondition0(),
+            new LaunchInterceptorCondition1(),
+            new LaunchInterceptorCondition2(),
+            new LaunchInterceptorCondition3(),
+            new LaunchInterceptorCondition4(),
+            new LaunchInterceptorCondition5(),
+            new LaunchInterceptorCondition6(),
+            new LaunchInterceptorCondition7(),
+            new LaunchInterceptorCondition8(),
+            new LaunchInterceptorCondition9(),
+            new LaunchInterceptorCondition10(),
+            new LaunchInterceptorCondition11(),
+            new LaunchInterceptorCondition12(),
+            new LaunchInterceptorCondition13(),
+            new LaunchInterceptorCondition14()
+        );
     }
 
 }

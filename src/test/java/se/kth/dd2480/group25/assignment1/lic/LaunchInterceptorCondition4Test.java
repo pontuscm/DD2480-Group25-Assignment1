@@ -17,7 +17,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static se.kth.dd2480.group25.assignment1.test_utils.CoordinateTestUtils.point;
 import static se.kth.dd2480.group25.assignment1.test_utils.CoordinateTestUtils.repeating;
 
-class LaunchIntercepterCondition4Test {
+class LaunchInterceptorCondition4Test {
 
     private InputParameters parameters = new InputParameters();
     private LaunchInterceptorCondition4 condition = new LaunchInterceptorCondition4();
