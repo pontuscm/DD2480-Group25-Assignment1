@@ -26,6 +26,9 @@ public class LaunchInterceptorCondition3Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return Combinations of valid inputs
+     */
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
             arguments(List.of(Coordinate.of(14, 23), Coordinate.of(7, 12), Coordinate.of(30, 6)), 140.0),
@@ -36,6 +39,9 @@ public class LaunchInterceptorCondition3Test {
         );
     }
 
+    /**
+     * Should return false since the area of the triangle is smaller.
+     */
     @Test
     void shouldRejectIfSmaller() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 15), Coordinate.of(25, 20), Coordinate.of(24, 9));
@@ -43,6 +49,9 @@ public class LaunchInterceptorCondition3Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since there aren't enough data points to form a triangle.
+     */
     @Test
     void shouldRejectIfTooFewCoordinates() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10), Coordinate.of(20, 20));
@@ -50,6 +59,10 @@ public class LaunchInterceptorCondition3Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should reject since although there exist three data points that form a triangle larger than
+     * required but these points are not consecutive.
+     */
     @Test
     void shouldRejectIfNotConsecutive() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10),
@@ -60,6 +73,9 @@ public class LaunchInterceptorCondition3Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since the triangle area is exactly the minimum size (we require that triangle must be greater than AREA1).
+     */
     @Test
     void shouldRejectIfExactlyMinSize() {
         List<Coordinate> coordinates = List.of(Coordinate.of(13, 17), Coordinate.of(26, 9), Coordinate.of(50, 19));

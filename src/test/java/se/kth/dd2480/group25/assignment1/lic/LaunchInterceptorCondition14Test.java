@@ -12,6 +12,9 @@ public class LaunchInterceptorCondition14Test {
     private final InputParameters parameters = new InputParameters();
     private final LaunchInterceptorCondition14 condition = new LaunchInterceptorCondition14();
 
+    /**
+     * Should return true since it has both a triangle greater than AREA1 and one that is lesser than AREA2.
+     */
     @Test
     void shouldAcceptValidInput() {
         parameters.setE_pts(3);
@@ -30,6 +33,9 @@ public class LaunchInterceptorCondition14Test {
         assertTrue(condition.evaluate(points, parameters));
     }
 
+    /**
+     * Should return false since the area of the largest triangle is lesser than AREA2.
+     */
     @Test
     void shouldRejectIfNoLargerTriangle() {
         parameters.setE_pts(3);
@@ -48,6 +54,9 @@ public class LaunchInterceptorCondition14Test {
         assertFalse(condition.evaluate(points, parameters));
     }
 
+    /**
+     * Should return false since the area of the smallest triangle is greater than AREA2.
+     */
     @Test
     void shouldRejectIfNoSmallerTriangle() {
         parameters.setE_pts(3);
@@ -66,6 +75,9 @@ public class LaunchInterceptorCondition14Test {
         assertFalse(condition.evaluate(points, parameters));
     }
 
+    /**
+     * Should return false since the triangle area is exactly the minimum size (we require that triangle must be greater than AREA1).
+     */
     @Test
     void shouldRejectIfExactlyMinimumSize() {
         parameters.setE_pts(3);
@@ -84,6 +96,9 @@ public class LaunchInterceptorCondition14Test {
         assertFalse(condition.evaluate(points, parameters));
     }
 
+    /**
+     * Should return false since the triangle area is exactly the maximum size (we require that triangle must be lesser than AREA2).
+     */
     @Test
     void shouldRejectIfExactlyMaximumSize() {
         parameters.setE_pts(3);

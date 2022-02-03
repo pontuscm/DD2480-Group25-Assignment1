@@ -29,6 +29,9 @@ public class LaunchInterceptorCondition10Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return Combinations of valid inputs
+     */
     static Stream<Arguments> validInputProvider() {
         var list1 = List.of(point(14, 23), point(0, 0), point(7, 12), point(0, 0), point(0, 0), point(30, 6));
         var list2 = List.of(point(0, 0), point(1, 0), point(5, 5), point(2, 0),
@@ -47,6 +50,9 @@ public class LaunchInterceptorCondition10Test {
         );
     }
 
+    /**
+     * Should return false since the area of the triangle is smaller.
+     */
     @Test
     void shouldRejectIfSmaller() {
         List<Coordinate> coordinates = ListBuilder.create()
@@ -63,6 +69,9 @@ public class LaunchInterceptorCondition10Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since there are too few data points (< 3 + E_pts + F_pts).
+     */
     @Test
     void shouldRejectIfTooFewCoordinates() {
         List<Coordinate> coordinates = ListBuilder.create()
@@ -77,6 +86,9 @@ public class LaunchInterceptorCondition10Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since the triangle area is exactly the minimum size (we require that triangle must be greater than AREA1).
+     */
     @Test
     void shouldRejectIfExactlyMinSize() {
         List<Coordinate> coordinates = ListBuilder.create()
