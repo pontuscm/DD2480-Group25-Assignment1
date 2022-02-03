@@ -97,6 +97,4 @@ public final class GeometryHelper {
         double yDiffSquared = Math.pow(a.getY() - b.getY(), 2);
         return Math.sqrt(xDiffSquared + yDiffSquared);
     }
-
-
 }
