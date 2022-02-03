@@ -15,11 +15,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static se.kth.dd2480.group25.assignment1.test_utils.CoordinateTestUtils.*;
 
+/*
+ * Unit tests for the launch interceptor condition 5 class
+ */
 public class LaunchInterceptorCondition6Test {
 
     private InputParameters parameters = new InputParameters();
     private LaunchInterceptorCondition6 condition = new LaunchInterceptorCondition6();
 
+    /* 
+     * Test that checks three sets of valid input parameters and is expected evaluate 
+     * to true. 
+     */
     @ParameterizedTest
     @MethodSource("validInputProvider")
     void shouldAcceptForValidInput(List<Coordinate> coordinates, double dist, int n_pts) {
@@ -46,6 +53,10 @@ public class LaunchInterceptorCondition6Test {
         );
     }
 
+    /* 
+     * Test that checks with fewer coordinates than allowed. Input is two 
+     * coordinates so it is expected to evaluate to false. 
+     */
     @Test
     void shouldRejectIfTooFewCoordinates() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10), 
@@ -55,6 +66,10 @@ public class LaunchInterceptorCondition6Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /* 
+     * Test that checks with fewer N_PTS than allowed. Input is two 
+     * N_PTS so it is expected to evaluate to false. 
+     */
     @Test
     void shouldRejectIfFewerThanThreeNpts() {
         List<Coordinate> coordinates = List.of(Coordinate.of(8, 10),
@@ -65,6 +80,11 @@ public class LaunchInterceptorCondition6Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /* 
+     * Test that checks with more N_PTS than coordinates which is not allowed. 
+     * Input is five N_PTS and four coordinates so it is expected to evaluate 
+     * to false. 
+     */
     @Test
     void shouldRejectIfMoreNptsThanCoordinates() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10),
@@ -76,6 +96,10 @@ public class LaunchInterceptorCondition6Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /* 
+     * Test that checks with DIST set lower than zero which is not allowed. 
+     * Input is DIST set at minus one so it is expected to evaluate to false. 
+     */
     @Test
     void shouldRejectIfDistLowerThanZero() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10),
@@ -87,6 +111,12 @@ public class LaunchInterceptorCondition6Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /* 
+     * Test that checks if there is no coordinate further away than DIST which
+     * should not meet the condition. Input is four coordinates with x/y distances
+     * of maximum four from each other and DIST set at ten so it is expected to 
+     * evaluate to false. 
+     */
     @Test
     void shouldRejectIfNoPointLongerAwayThanDist() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
