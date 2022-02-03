@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
+import static se.kth.dd2480.group25.assignment1.test_utils.CoordinateTestUtils.repeating;
 
 @ExtendWith(MockitoExtension.class)
 public class LaunchDeciderTest {
@@ -28,7 +29,7 @@ public class LaunchDeciderTest {
         when(lcm.applyConditionsMetVector(anyList())).thenReturn(pum);
         when(pum.applyPreliminaryUnlockingVector(anyList())).thenReturn(List.of(true, true, true, true));
 
-        boolean result = launchDecider.decide(4, List.of(), new InputParameters(), lcm, List.of());
+        boolean result = launchDecider.decide(4, repeating(5, 5, 5, 4), new InputParameters(), lcm, List.of());
         assertTrue(result);
     }
 
@@ -37,7 +38,7 @@ public class LaunchDeciderTest {
         when(lcm.applyConditionsMetVector(anyList())).thenReturn(pum);
         when(pum.applyPreliminaryUnlockingVector(anyList())).thenReturn(List.of(true, true, true, false));
 
-        boolean result = launchDecider.decide(4, List.of(), new InputParameters(), lcm, List.of());
+        boolean result = launchDecider.decide(4, repeating(5, 5, 5, 4), new InputParameters(), lcm, List.of());
         assertFalse(result);
     }
 }

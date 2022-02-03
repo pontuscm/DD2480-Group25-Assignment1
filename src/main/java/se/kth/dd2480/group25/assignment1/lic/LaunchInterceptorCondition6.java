@@ -49,4 +49,5 @@ public class LaunchInterceptorCondition6 implements LaunchInterceptorCondition {
 
         return false;
     }
+
 }
