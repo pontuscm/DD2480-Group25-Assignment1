@@ -31,6 +31,9 @@ class LaunchInterceptorCondition4Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return a combination of valid inputs
+     */
     static Stream<Arguments> validInputProvider() {
         var list1 = List.of(point(14, 23), point(-5, -56), point(-7, 12), point(0, 0), point(0, 0), point(30, 6));
         var list2 = List.of(point(0, 0), point(1, 0), point(-5, 5), point(2, 0),
@@ -50,6 +53,9 @@ class LaunchInterceptorCondition4Test {
         );
     }
 
+    /**
+     * Should return false since two points cannot exist in three different quadrants
+     */
     @Test
     void shouldRejectIfTooFewQuads(){
         List<Coordinate> coordinates = List.of(Coordinate.of(-10, 15), Coordinate.of(25, -20), Coordinate.of(24, 9));
@@ -58,6 +64,9 @@ class LaunchInterceptorCondition4Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * should return false since there are no three consecutive points that exist in three different quadrants
+     */
     @Test
     void shouldRejectIfNotConsequtive(){
         List<Coordinate> coordinates = List.of(Coordinate.of(-10, 15), Coordinate.of(25, -20), Coordinate.of(25, -20), Coordinate.of(24, 9));

@@ -31,6 +31,9 @@ class LaunchInterceptorCondition9Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return a combination of valid inputs
+     */
     static Stream<Arguments> validInputProvider() {
         var list1 = List.of(point(55, 2), point(0, 0), point(3, 1), point(0, 0), point(55, 3));
         var list2 = List.of(point(0, 0), point(55, 2), point(5, 5), point(40, 20),
@@ -50,6 +53,9 @@ class LaunchInterceptorCondition9Test {
         );
     }
 
+    /**
+     * Should return false since the only possible angle is very close to pi
+     */
     @Test
     void shouldRejectIfCloseToPi() {
         List<Coordinate> coordinates = CoordinateTestUtils.ListBuilder.create()
@@ -66,6 +72,9 @@ class LaunchInterceptorCondition9Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since one of the end points is the same as the vertex, meaning that the angle is undefined
+     */
     @Test
     void shouldRejectIfCoincideWithVertex() {
         List<Coordinate> coordinates = CoordinateTestUtils.ListBuilder.create()

@@ -26,6 +26,9 @@ class LaunchInterceptorCondition2Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return a combination of valid inputs
+     */
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
                 arguments(List.of(Coordinate.of(55, 2), Coordinate.of(3, 1), Coordinate.of(55, 3)), 1.0),
@@ -34,6 +37,9 @@ class LaunchInterceptorCondition2Test {
         );
     }
 
+    /**
+     * Should return false since the angle is very close to pi
+     */
     @Test
     void shouldRejectIfCloseToPi() {
         List<Coordinate> coordinates = List.of(Coordinate.of(55, 2), Coordinate.of(40, 10), Coordinate.of(10, 10));
@@ -41,6 +47,9 @@ class LaunchInterceptorCondition2Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since one of the end points is the same as the vertex, meaning that the angle is undefined
+     */
     @Test
     void shouldRejectIfCoincideWithVertex() {
         List<Coordinate> coordinates = List.of(Coordinate.of(55, 2), Coordinate.of(40, 10), Coordinate.of(40, 10));
