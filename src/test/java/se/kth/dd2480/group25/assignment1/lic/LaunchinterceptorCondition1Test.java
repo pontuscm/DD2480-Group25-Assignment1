@@ -28,9 +28,16 @@ public class LaunchinterceptorCondition1Test {
 
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
-            arguments(List.of(Coordinate.of(10, 10), Coordinate.of(15, 15), Coordinate.of(20, 20)), 7.0),
-            arguments(List.of(Coordinate.of(0, 0),Coordinate.of(0, 1),Coordinate.of(1, 1)),0.7),
-            arguments(List.of(Coordinate.of(0, 0),Coordinate.of(0, Math.sqrt(3.0)),Coordinate.of(1, 0),Coordinate.of(-1, 0)),1.1547) 
+            arguments(List.of(Coordinate.of(10, 10), 
+                              Coordinate.of(15, 15), 
+                              Coordinate.of(20, 20)), 7.0),   // the greatest length is 7.07 > 7.0 
+            arguments(List.of(Coordinate.of(0, 0),
+                              Coordinate.of(0, 1),
+                              Coordinate.of(1, 1)), 0.7),      // the calculated radius is ~0.707 > 0.7 
+            arguments(List.of(Coordinate.of(0, 0),
+                              Coordinate.of(0, Math.sqrt(3.0)),
+                              Coordinate.of(1, 0),
+                              Coordinate.of(-1, 0)), 1.1)   // the calculated radius is 1.1547 > 1.1
         );
     }
 
@@ -38,28 +45,34 @@ public class LaunchinterceptorCondition1Test {
     void collinearFalse() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10), 
                                                Coordinate.of(15, 15), 
-                                               Coordinate.of(20, 20)); // half of the length of greatest line is 14.14/2 =7.07
-        parameters.setRadius1(7.2);
+                                               Coordinate.of(20, 20));  // three points are collinear 
+                                                                        //half of the length of greatest line is 14.14/2 =7.07 
+        parameters.setRadius1(7.2); 
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
     @Test
     void shouleRejectIfTooFewCoordinates() {
-        List<Coordinate> coordinates = List.of(Coordinate.of(10, 10), Coordinate.of(15, 15)); 
+        List<Coordinate> coordinates = List.of(Coordinate.of(10, 10), 
+                                               Coordinate.of(15, 15));  // only 2 points do not satisfy the condition
         parameters.setRadius1(7.2);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
     @Test
     void shouldRejectIfEqualRadius() {
-        List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),Coordinate.of(0, 1),Coordinate.of(1, 1)); 
+        List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
+                                               Coordinate.of(0, 1),
+                                               Coordinate.of(1, 1)); // the length of radius of circumcircle is the same as radius1
         parameters.setRadius1(0.7071068);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
     @Test
     void shouldRejectIfTooSmallRadius() {
-        List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),Coordinate.of(0, 1),Coordinate.of(1, 1)); 
+        List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
+                                               Coordinate.of(0, 1),
+                                               Coordinate.of(1, 1)); // the length of radius of circumcircle is smaller than radius1
         parameters.setRadius1(0.72);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
