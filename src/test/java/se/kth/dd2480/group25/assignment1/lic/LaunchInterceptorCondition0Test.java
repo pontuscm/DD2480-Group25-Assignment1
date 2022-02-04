@@ -28,6 +28,9 @@ public class LaunchInterceptorCondition0Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return a combination of valid inputs
+     */
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
                 arguments(List.of(point(0, 0), point(0, 15)), 10),
@@ -35,6 +38,10 @@ public class LaunchInterceptorCondition0Test {
         );
     }
 
+    /**
+     * Should return false since there exists no set of two consecutive points
+     * in the list that have a distance greater than length1.
+     */
     @Test
     void shouldRejectIfSmaller() {
         List<Coordinate> coordinates = CoordinateTestUtils.ListBuilder.create()
@@ -45,6 +52,11 @@ public class LaunchInterceptorCondition0Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since there exists no set of two consecutive points
+     * in the list that have a distance greater than length1, only a set of
+     * two consecutive points that are exactly length1 apart.
+     */
     @Test
     void shouldRejectIfExactLength() {
         List<Coordinate> coordinates = CoordinateTestUtils.ListBuilder.create()
