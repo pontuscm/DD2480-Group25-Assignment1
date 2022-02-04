@@ -29,6 +29,9 @@ public class LaunchinterceptorCondition13Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return Combinations of valid inputs
+     */
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
             arguments(List.of(Coordinate.of(0, 0),
@@ -36,10 +39,14 @@ public class LaunchinterceptorCondition13Test {
                               Coordinate.of(0, 1),
                               Coordinate.of(6, 5),
                               Coordinate.of(1, 1)),
-                              0.7,0.6,1,1)  // circumcircle radius is around 0.707
+                              0.7,0.6,1,1)  // circumcircle radius is around 0.707 > given radius
         );
     }
 
+    /**
+     * Should return false since the number of points 
+     * should be greater than 4
+     */
     @Test
     void shouleRejectIfTooFewCoordinates() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
@@ -49,11 +56,15 @@ public class LaunchinterceptorCondition13Test {
         parameters.setRadius1(0.7);
         parameters.setRadius2(0.7);
 
-        parameters.setA_pts(1);
+        parameters.setA_pts(1);                                 
         parameters.setB_pts(1);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since the number of intervining points 
+     * should be greater than 0
+     */
     @Test
     void shouleRejectIfWrongInterveneNumber() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
@@ -66,18 +77,22 @@ public class LaunchinterceptorCondition13Test {
         parameters.setRadius2(0.7);
 
         parameters.setA_pts(1);
-        parameters.setB_pts(-2);
+        parameters.setB_pts(-2);       
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
 
+    /**
+     * Should return false since the circumcircle radius is 
+     * lower than the given raidus
+     */
     @Test
     void shouldRejectIfTooSmallRadius() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
                                                Coordinate.of(1, 0),
                                                Coordinate.of(0, 3),
                                                Coordinate.of(1, 2),
-                                               Coordinate.of(4, 0)); // circumcircle radius is 2.5
+                                               Coordinate.of(4, 0)); // circumcircle radius is 2.5 which is lower than the given radius
         parameters.setRadius1(3);
         parameters.setRadius2(3);
 

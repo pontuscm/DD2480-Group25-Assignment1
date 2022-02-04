@@ -28,6 +28,9 @@ public class LaunchinterceptorCondition8Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return Combinations of valid inputs
+     */
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
             arguments(List.of(Coordinate.of(0, 0),
@@ -39,18 +42,26 @@ public class LaunchinterceptorCondition8Test {
         );
     }
 
+    /**
+     * Should return false since the length of the collinear points is smaller 
+     * than the given radius
+     */
     @Test
     void shouleRejectIfTooFewCoordinates() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
                                                Coordinate.of(0, 1),
                                                Coordinate.of(1, 1),
-                                               Coordinate.of(3, 5)); 
+                                               Coordinate.of(3, 5));  // the number of points does not satisfy the condition
         parameters.setRadius1(0.7);
         parameters.setA_pts(1);
         parameters.setB_pts(1);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since the number of intervining points 
+     * should be greater than 0
+     */
     @Test
     void shouleRejectIfWrongInterveneNumber() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
@@ -65,14 +76,17 @@ public class LaunchinterceptorCondition8Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
-
+    /**
+     * Should return false since the circumcircle radius is 
+     * lower than the given raidus
+     */
     @Test
     void shouldRejectIfTooSmallRadius() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
                                                Coordinate.of(1, 0),
                                                Coordinate.of(0, 4),
                                                Coordinate.of(1, 2),
-                                               Coordinate.of(3, 0));  // circumcircle radius is 2.5
+                                               Coordinate.of(3, 0));   // calculated radius is around 2.5
         parameters.setRadius1(2.6);
         parameters.setA_pts(1);
         parameters.setB_pts(1);
