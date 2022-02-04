@@ -30,6 +30,9 @@ public class LaunchInterceptorCondition7Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return a combination of valid inputs
+     */
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
                 arguments(List.of(point(0, 0), point(200, 200), point(200, 200), point(20, 30)), 2, 10),
@@ -37,6 +40,9 @@ public class LaunchInterceptorCondition7Test {
         );
     }
 
+    /**
+     * Should return false since NUMPOINTS is less than 3.
+     */
     @Test
     void shouldRejectIfFewerThan3Points() {
         List<Coordinate> coordinates = CoordinateTestUtils.ListBuilder.create()
@@ -49,6 +55,11 @@ public class LaunchInterceptorCondition7Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since there exists no set of two points
+     * with K_pts intervening points that are more than length1
+     * apart.
+     */
     @Test
     void shouldRejectIfDistanceSmaller() {
         List<Coordinate> coordinates = CoordinateTestUtils.ListBuilder.create()

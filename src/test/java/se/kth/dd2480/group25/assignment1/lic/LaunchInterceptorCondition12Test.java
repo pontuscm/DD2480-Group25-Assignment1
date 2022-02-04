@@ -38,6 +38,9 @@ public class LaunchInterceptorCondition12Test {
         );
     }
 
+    /**
+     * Should return false since NUMPOINTS is less than 3.
+     */
     @Test
     void shouldRejectIfFewerThan3Points() {
         List<Coordinate> coordinates = CoordinateTestUtils.ListBuilder.create()
@@ -50,6 +53,11 @@ public class LaunchInterceptorCondition12Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since there exists no set of two points
+     * with K_pts intervening points that are more than length1
+     * apart.
+     */
     @Test
     void shouldRejectIfDistanceSmallerThanLength1() {
         List<Coordinate> coordinates = CoordinateTestUtils.ListBuilder.create()
@@ -64,6 +72,11 @@ public class LaunchInterceptorCondition12Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since there exists no set of two points
+     * with K_pts intervening points that are less than length2
+     * apart.
+     */
     @Test
     void shouldRejectIfDistanceGreaterThanLength2() {
         List<Coordinate> coordinates = CoordinateTestUtils.ListBuilder.create()
