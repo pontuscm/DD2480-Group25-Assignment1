@@ -26,6 +26,10 @@ public class LaunchinterceptorCondition1Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return Combinations of valid inputs
+     */
+
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
             arguments(List.of(Coordinate.of(10, 10), 
@@ -41,6 +45,10 @@ public class LaunchinterceptorCondition1Test {
         );
     }
 
+    /**
+     * Should return false since the length of the collinear points is smaller 
+     * than the given radius
+     */
     @Test
     void collinearFalse() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10), 
@@ -51,28 +59,40 @@ public class LaunchinterceptorCondition1Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since only 2 points do not satisfy the condition
+     */
     @Test
     void shouleRejectIfTooFewCoordinates() {
         List<Coordinate> coordinates = List.of(Coordinate.of(10, 10), 
-                                               Coordinate.of(15, 15));  // only 2 points do not satisfy the condition
+                                               Coordinate.of(15, 15));  
         parameters.setRadius1(7.2);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since the length of radius of circumcircle 
+     * is the same as radius1
+     */
     @Test
     void shouldRejectIfEqualRadius() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
                                                Coordinate.of(0, 1),
-                                               Coordinate.of(1, 1)); // the length of radius of circumcircle is the same as radius1
+                                               Coordinate.of(1, 1)); 
         parameters.setRadius1(0.7071068);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+
+    /**
+     * Should return false since the length of radius of circumcircle 
+     * is smaller than radius1
+     */
     @Test
     void shouldRejectIfTooSmallRadius() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
                                                Coordinate.of(0, 1),
-                                               Coordinate.of(1, 1)); // the length of radius of circumcircle is smaller than radius1
+                                               Coordinate.of(1, 1)); 
         parameters.setRadius1(0.72);
         assertFalse(condition.evaluate(coordinates, parameters));
     }

@@ -29,6 +29,9 @@ public class LaunchinterceptorCondition13Test {
         assertTrue(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * @return Combinations of valid inputs
+     */
     static Stream<Arguments> validInputProvider() {
         return Stream.of(
             arguments(List.of(Coordinate.of(0, 0),
@@ -40,12 +43,16 @@ public class LaunchinterceptorCondition13Test {
         );
     }
 
+    /**
+     * Should return false since the number of points 
+     * should be greater than 4
+     */
     @Test
     void shouleRejectIfTooFewCoordinates() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
                                                Coordinate.of(0, 1),
                                                Coordinate.of(1, 1),
-                                               Coordinate.of(3, 5)); // the number of points should be greater than 4
+                                               Coordinate.of(3, 5)); 
         parameters.setRadius1(0.7);
         parameters.setRadius2(0.7);
 
@@ -54,6 +61,10 @@ public class LaunchinterceptorCondition13Test {
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
+    /**
+     * Should return false since the number of intervining points 
+     * should be greater than 0
+     */
     @Test
     void shouleRejectIfWrongInterveneNumber() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
@@ -66,11 +77,15 @@ public class LaunchinterceptorCondition13Test {
         parameters.setRadius2(0.7);
 
         parameters.setA_pts(1);
-        parameters.setB_pts(-2);        // the number of intervining points should be greater than 0
+        parameters.setB_pts(-2);       
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
 
+    /**
+     * Should return false since the circumcircle radius is 
+     * lower than the given raidus
+     */
     @Test
     void shouldRejectIfTooSmallRadius() {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
