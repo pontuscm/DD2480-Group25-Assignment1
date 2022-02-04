@@ -44,7 +44,7 @@ public class LaunchinterceptorCondition8Test {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
                                                Coordinate.of(0, 1),
                                                Coordinate.of(1, 1),
-                                               Coordinate.of(3, 5)); 
+                                               Coordinate.of(3, 5));  // the number of points does not satisfy the condition
         parameters.setRadius1(0.7);
         parameters.setA_pts(1);
         parameters.setB_pts(1);
@@ -58,7 +58,7 @@ public class LaunchinterceptorCondition8Test {
                                                Coordinate.of(0, 1),
                                                Coordinate.of(3, 5),
                                                Coordinate.of(1, 1),
-                                               Coordinate.of(0, 0)); 
+                                               Coordinate.of(0, 0)); // the number of intervining points should be greater than 0
         parameters.setRadius1(1);
         parameters.setA_pts(0);
         parameters.setB_pts(2);
@@ -72,7 +72,7 @@ public class LaunchinterceptorCondition8Test {
                                                Coordinate.of(1, 0),
                                                Coordinate.of(0, 4),
                                                Coordinate.of(1, 2),
-                                               Coordinate.of(3, 0));  // circumcircle radius is 2.5
+                                               Coordinate.of(3, 0));  // circumcircle radius is 2.5 which is lower than 2.6
         parameters.setRadius1(2.6);
         parameters.setA_pts(1);
         parameters.setB_pts(1);
