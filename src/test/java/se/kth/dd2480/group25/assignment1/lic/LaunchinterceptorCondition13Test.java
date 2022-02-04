@@ -36,7 +36,7 @@ public class LaunchinterceptorCondition13Test {
                               Coordinate.of(0, 1),
                               Coordinate.of(6, 5),
                               Coordinate.of(1, 1)),
-                              0.7,0.6,1,1)  // circumcircle radius is around 0.707
+                              0.7,0.6,1,1)  // circumcircle radius is around 0.707 > given radius
         );
     }
 
@@ -45,11 +45,11 @@ public class LaunchinterceptorCondition13Test {
         List<Coordinate> coordinates = List.of(Coordinate.of(0, 0),
                                                Coordinate.of(0, 1),
                                                Coordinate.of(1, 1),
-                                               Coordinate.of(3, 5)); 
+                                               Coordinate.of(3, 5)); // the number of points should be greater than 4
         parameters.setRadius1(0.7);
         parameters.setRadius2(0.7);
 
-        parameters.setA_pts(1);
+        parameters.setA_pts(1);                                 
         parameters.setB_pts(1);
         assertFalse(condition.evaluate(coordinates, parameters));
     }
@@ -66,7 +66,7 @@ public class LaunchinterceptorCondition13Test {
         parameters.setRadius2(0.7);
 
         parameters.setA_pts(1);
-        parameters.setB_pts(-2);
+        parameters.setB_pts(-2);        // the number of intervining points should be greater than 0
         assertFalse(condition.evaluate(coordinates, parameters));
     }
 
@@ -77,7 +77,7 @@ public class LaunchinterceptorCondition13Test {
                                                Coordinate.of(1, 0),
                                                Coordinate.of(0, 3),
                                                Coordinate.of(1, 2),
-                                               Coordinate.of(4, 0)); // circumcircle radius is 2.5
+                                               Coordinate.of(4, 0)); // circumcircle radius is 2.5 which is lower than the given radius
         parameters.setRadius1(3);
         parameters.setRadius2(3);
 
